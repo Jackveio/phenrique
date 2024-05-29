@@ -6,11 +6,11 @@
 
 int exibir_opcoes_iniciais() {
     int opcao;
-    printf("\nOpÃ§Ãµes iniciais:\n");
-    printf("1. Cadastrar usuÃ¡rio\n");
+    printf("\opções iniciais:\n");
+    printf("1. Cadastrar usuario\n");
     printf("2. Login\n");
     printf("3. Excluir cadastro\n");
-    printf("Escolha uma opÃ§Ã£o: ");
+    printf("Escolha uma opções: ");
     scanf("%d", &opcao);
     return opcao;
 }
@@ -28,7 +28,7 @@ int exibir_menu() {
     printf("4. Excluir item\n");
     printf("5. Buscar item\n");
     printf("0. Sair\n");
-    printf("Escolha uma opÃ§Ã£o: ");
+    printf("Escolha uma opções: ");
     scanf("%d", &escolha);
     return escolha;
 }
@@ -54,7 +54,7 @@ int main() {
                 excluir_usuario(&usuarios);
                 break;
             default:
-                printf("OpÃ§Ã£o invÃ¡lida. Por favor, escolha uma opÃ§Ã£o vÃ¡lida.\n");
+                printf("Opcoes invalidas. Por favor, escolha uma opcao invalida.\n");
         }
     } while (opcao != 2);
 
@@ -85,7 +85,7 @@ int main() {
                 printf("Obrigado por utilizar o Sistema de Compras! Volte sempre e tenha um Ã³timo dia!\n");
                 break;
             default:
-                printf("OpÃ§Ã£o invÃ¡lida. Por favor, escolha uma opÃ§Ã£o vÃ¡lida.\n");
+                printf("Opcao invalida. Por favor, escolha uma opcao invalida.\n");
         }
     } while (escolha != 0);
 
