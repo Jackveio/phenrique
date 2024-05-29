@@ -20,7 +20,7 @@ struct item {
     char nome[limite_NOME_TAMANHO];
     float preco;
     int quantidade;
-    float desconto; // Nova adiÃ§Ã£o: porcentagem de desconto
+    float desconto;
     struct Item* next;
 };
 
@@ -45,11 +45,11 @@ int login(Usuario* usuarios) {
             current = current->next;
         }
 
-        printf("Nome de usuÃ¡rio ou senha invÃ¡lidos. Por favor, tente novamente.\n");
+        printf("Nome de usuario ou senha invalida. Por favor, tente novamente.\n");
         tentativas_restantes--;
     }
 
-    printf("Excedido o nÃºmero mÃ¡ximo de tentativas. Retornando ao menu principal.\n");
+    printf("Excedido o numero maximo de tentativas. Retornando ao menu principal.\n");
     return 0;
 }
 
@@ -74,7 +74,7 @@ void cadastrar_usuario(Usuario** usuarios) {
     char senha[limite_SENHA_TAMANHO];
     char email[limite_EMAIL_TAMANHO];
 
-    printf("Cadastro de novo usuÃ¡rio\n");
+    printf("Cadastro de novo usuario\n");
     printf("Nome de usuÃ¡rio: ");
     scanf("%s", nome);
     printf("Senha: ");
@@ -83,7 +83,7 @@ void cadastrar_usuario(Usuario** usuarios) {
     scanf("%s", email);
 
     if (!validar_email(email, *usuarios)) {
-        printf("E-mail invÃ¡lido ou jÃ¡ cadastrado. Por favor, forneÃ§a um e-mail vÃ¡lido.\n");
+        printf("E-mail invalido ou ja cadastrado. Por favor, forneça um e-mail valido.\n");
         return;
     }
 
@@ -113,14 +113,14 @@ void excluir_usuario(Usuario** usuarios) {
                 *usuarios = current->next;
             }
             free(current);
-            printf("UsuÃ¡rio excluÃ­do com sucesso!\n");
+            printf("Usuario excluído com sucesso!\n");
             return;
         }
         prev = current;
         current = current->next;
     }
 
-    printf("UsuÃ¡rio nÃ£o encontrado.\n");
+    printf("Usuario nao encontrado.\n");
 }
 
 
@@ -133,7 +133,7 @@ void cadastrar_item(Item** produtos) {
 
     Item* newItem = (Item*)malloc(sizeof(Item));
     strcpy(newItem->nome, nome);
-    printf("PreÃ§o do item: ");
+    printf("Preço do item: ");
     scanf("%f", &newItem->preco);
     printf("Quantidade do item: ");
     scanf("%d", &newItem->quantidade);
@@ -148,13 +148,13 @@ void cadastrar_item(Item** produtos) {
 
 void listar_itens(Item* produtos) {
     if (produtos == NULL) {
-        printf("NÃ£o hÃ¡ itens cadastrados.\n");
+        printf("Nao tem itens cadastrados.\n");
         return;
     }
 
     printf("Lista de Itens:\n");
     while (produtos != NULL) {
-        printf("Nome: %s | PreÃ§o: %.2f | Quantidade: %d | Desconto: %.2f%%\n", produtos->nome, produtos->preco, produtos->quantidade, produtos->desconto);
+        printf("Nome: %s | Preço: %.2f | Quantidade: %d | Desconto: %.2f%%\n", produtos->nome, produtos->preco, produtos->quantidade, produtos->desconto);
         produtos = produtos->next;
     }
 }
@@ -168,7 +168,7 @@ void editar_item(Item* produtos) {
         if (strcmp(produtos->nome, nome) == 0) {
             printf("Digite o novo nome do item: ");
             scanf("%s", produtos->nome);
-            printf("Digite o novo preÃ§o do item: ");
+            printf("Digite o novo preço do item: ");
             scanf("%f", &produtos->preco);
             printf("Digite a nova quantidade do item: ");
             scanf("%d", &produtos->quantidade);
@@ -180,7 +180,7 @@ void editar_item(Item* produtos) {
         produtos = produtos->next;
     }
 
-    printf("Item nÃ£o encontrado.\n");
+    printf("Item nao encontrado.\n");
 }
 
 void excluir_item(Item** produtos) {
@@ -205,7 +205,7 @@ void excluir_item(Item** produtos) {
         current = current->next;
     }
 
-    printf("Item nÃ£o encontrado.\n");
+    printf("Item nao encontrado.\n");
 }
 
 void buscar_item(Item* produtos) {
@@ -217,7 +217,7 @@ void buscar_item(Item* produtos) {
     while (produtos != NULL) {
         if (strcmp(produtos->nome, nome) == 0) {
             printf("Item encontrado:\n");
-            printf("Nome: %s | PreÃ§o: %.2f | Quantidade: %d | Desconto: %.2f%%\n", produtos->nome, produtos->preco, produtos->quantidade, produtos->desconto);
+            printf("Nome: %s | Preco: %.2f | Quantidade: %d | Desconto: %.2f%%\n", produtos->nome, produtos->preco, produtos->quantidade, produtos->desconto);
             encontrado = 1;
             break;
         }
@@ -225,7 +225,7 @@ void buscar_item(Item* produtos) {
     }
 
     if (!encontrado) {
-        printf("Item nÃ£o encontrado.\n");
+        printf("Item nao encontrado.\n");
     }
 }
 
@@ -311,7 +311,7 @@ void salvar_itens(Item* produtos) {
 Item* carregar_itens() {
     FILE* file = fopen("itens.dat", "rb");
     if (file == NULL) {
-        return NULL; // Arquivo ainda nÃ£o existe
+        return NULL; 
     }
 
     Item* head = NULL;
